@@ -1,0 +1,27 @@
+name: Auto Run Ansible
+
+on:
+  push:
+    paths:
+      - 'ansible/**'     # triggers only when ansible files pushed
+
+jobs:
+  run-playbooks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Ansible
+      run: |
+        sudo apt update
+        sudo apt install ansible -y
+
+    - name: Run all playbooks
+      run: |
+        for file in ansible/*.yml; do
+          echo "Running $file"
+          ansible-playbook $file || true
+        done
+
