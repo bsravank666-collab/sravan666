@@ -1,0 +1,7 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Install nginx
+      debug:
+        msg: "Installing nginx"
+  
