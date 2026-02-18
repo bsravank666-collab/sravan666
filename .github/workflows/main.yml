@@ -1,0 +1,28 @@
+name: Simple CI Pipeline
+
+# Trigger pipeline when code is pushed
+on:
+  push:
+    branches:
+      - main        # runs when you push to main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code from repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Print message
+      - name: Run a simple command
+        run: echo "Pipeline triggered successfully after push!"
+
+      # Step 3: Show date
+      - name: Show date
+        run: date
+
+      # Step 4: List files
+      - name: List files
+        run: ls -lrth
